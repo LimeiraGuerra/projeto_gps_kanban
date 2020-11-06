@@ -1,0 +1,13 @@
+.column-header {
+    text-align: center;
+    color: white;
+    background-color: #2b2e31 !important;
+}
+
+.border-right {
+    border-right-width: 2px !important;
+}
+
+.border-left {
+    border-left-width: 2px !important;
+}
