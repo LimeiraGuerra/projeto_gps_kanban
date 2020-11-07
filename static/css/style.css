@@ -11,4 +11,12 @@
 .border-left {
     border-left-width: 2px !important;
 }
-
+.modal-lg{
+    width:50%;
+}
+.input-oab{
+    width: 45%;
+}
+.input-advogado{
+    width:50%;
+}
