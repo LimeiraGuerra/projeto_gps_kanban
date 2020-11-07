@@ -20,3 +20,8 @@
 .input-advogado{
     width:50%;
 }
+.btn-add{
+    height: 30px;
+    width: 25px;
+    background-image: url("/static/img/plus.png");
+}
