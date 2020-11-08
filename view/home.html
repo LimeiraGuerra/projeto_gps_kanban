@@ -68,18 +68,18 @@
                         <div class="row">
                             <div class="col-4">
                                 <label for="exampleFormControlTextarea2">OAB:</label>
-                              <input type="text" class="form-control input-oab">
+                              <input type="text" class="form-control input-oab" id="oab">
                             </div>
                             <div class="col-7">
                                 <label for="exampleFormControlTextarea3">Nome:</label>
                               <input type="text" class="form-control input-advogado" id="name-advogado">
                             </div>
                             <div class="col-1">
-                                <input class="btn btn-primary btn" type="button" value="Input">
-                                <button class="btn btn-primary btn-add" type="submit"></button>
+                                <button class="btn btn-primary btn-add" type="submit" onclick="capturar()"></button>
                             </div>          
                           </div>
                       </form>
+                      <p id="valor"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
