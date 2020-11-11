@@ -1,12 +1,14 @@
 	function capturar()
 	{
-        var nome = document.getElementById('name-advogado').value;
-        var oab = document.getElementById('oab').value;
-        if(nome == '' || oab == '')
+        if(document.getElementById('name-advogado').value == '' ||  document.getElementById('oab').value == '')
         {
+                
            alert("Por favor, digite novamente os dados do advogado!")
         }
         else{
+                var nome = document.getElementById('name-advogado').value;
+                var oab = document.getElementById('oab').value;
+        
                 var table = document.getElementById('Tabela');
                 var newRow = table.insertRow(0);
                
