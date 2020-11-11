@@ -2,9 +2,9 @@
 	{
         var nome = document.getElementById('name-advogado').value;
         var oab = document.getElementById('oab').value;
-        if(nome == null || oab == null)
+        if(nome == '' || oab == '')
         {
-           alert("Campos nulos. Por favor, digite novamente!")
+           alert("Por favor, digite novamente os dados do advogado!")
         }
         else{
                 var table = document.getElementById('Tabela');
