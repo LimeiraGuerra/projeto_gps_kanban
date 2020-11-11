@@ -12,7 +12,16 @@
     border-left-width: 2px !important;
 }
 .modal-lg{
-    width:50%;
+    width:400px;
+}
+.tabela-advogado{
+    border: 1px solid black;
+    background-color: darkgray;
+
+}
+table td{
+ border:1px solid black;
+ text-align:center;
 }
 .input-oab{
     width: 45%;
