@@ -23,6 +23,9 @@
         }
         
          }
-         function deleteRow(btn) {
-                $(button.excluir)
+         function deleteRow(t) {
+                var row = t.parentNode.parentNode;
+                document.getElementById("Tabela").deleteRow(row.rowIndex);
+                console.log(row);
+            
               }
