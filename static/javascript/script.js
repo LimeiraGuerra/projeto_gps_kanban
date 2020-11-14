@@ -21,4 +21,8 @@
                 cell2.innerHTML = name;        
                 cell3.innerHTML = '<input type="button" class="btn btn-danger" value="X" onclick="deleteRow(this)"/>';
         }
+        
          }
+         function deleteRow(btn) {
+                $(button.excluir)
+              }
