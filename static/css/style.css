@@ -42,5 +42,17 @@ table td{
     top: 405px;
     height: 34px;
     width: 40px;
-    background-image: url("/static/img/ic.png");
+}
+.coluna-nome-advogado
+{
+    width: 96px;
+}
+.coluna-num-oab{
+    width: 210px;
+}
+.coluna-btn{
+    width: 35px;
+}
+#btn-remove{
+    height: 30px;
 }
