@@ -15,22 +15,32 @@
     width:400px;
 }
 .tabela-advogado{
+    padding: 375rem .75rem;
     border: 1px solid black;
     background-color: darkgray;
+    
 
 }
 table td{
  border:1px solid black;
  text-align:center;
+ color: black;
+}
+.table td, .table th{    
+    padding: 0rem;
+    vertical-align: top;
+    border-top: 0px;
 }
 .input-oab{
-    width: 45%;
+    width: 85;
 }
 .input-advogado{
-    width:50%;
+    width:120;
 }
 .btn-add{
-    height: 30px;
-    width: 25px;
-    background-image: url("/static/img/plus.png");
+    position: fixed;
+    top: 405px;
+    height: 34px;
+    width: 40px;
+    background-image: url("/static/img/ic.png");
 }
