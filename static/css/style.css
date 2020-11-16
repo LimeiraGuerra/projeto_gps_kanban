@@ -11,7 +11,25 @@
 .border-left {
     border-left-width: 2px !important;
 }
-
-.pt-6 {
+.pt-6{
     padding-top: 6.5rem !important;
+}
+
+.min-vh-100 {
+    min-height: 100vh !important;
+}
+
+html{
+	overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #5d6368  #2b2e31;
+}
+
+html::-webkit-scrollbar {
+    background:#2b2e31;
+    width: 6px;
+    height: 15px; 
+}
+html::-webkit-scrollbar-thumb{
+	background: #5d6368;
 }
