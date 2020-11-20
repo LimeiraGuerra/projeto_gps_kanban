@@ -1,13 +1,16 @@
-from sql_alchemy import banco
+from sql_alchemy import bd
+#from sql_alchemy.orm import relationship    
+from model.lawyer import Lawyer
 
-class Task(banco.Model):
+class Task(bd.Model):
 
     __tablename__ = 'task'
 
-    task_id = banco.Column(banco.Integer, primary_key=True)
-    nome = banco.Column(banco.String(80))
-    descricao = banco.Column(banco.String(80))
-    status = banco.Column(banco.String(80))
+    task_id = bd.Column(bd.Integer, primary_key=True)
+    nome = bd.Column(bd.String(80))
+    descricao = bd.Column(bd.String(80))
+    status = bd.Column(bd.String(80))
+    #lawyers = bd.relationship('Lawyer', backref='task')
 
     def __init__(self, task_id, nome, descricao, status):
         self.task_id = task_id
@@ -23,4 +26,8 @@ class Task(banco.Model):
             'status': self.status
         }
 
-    
+    @classmethod
+    def find_task(self, task_id):
+        task = cls.query.filter_by(task_id=task_id).first()
+        if task: return task
+        return None

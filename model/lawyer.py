@@ -1,12 +1,12 @@
-from sql_alchemy import banco
+from sql_alchemy import bd
 
-class Lawyer(banco.Model):
+class Lawyer(bd.Model):
 
     __tablename__ = 'lawyer'
 
-    oab = banco.Column(banco.String(80))
-    task_id = banco.Column(banco.task_id)
-    nome = banco.Column(banco.String(80))
+    oab = bd.Column(bd.String(80), primary_key=True)
+    task_id = bd.Column(bd.Integer, bd.ForeignKey('task.task_id'))
+    nome = bd.Column(bd.String(80))
 
     def __init__(self, oab, task_id, nome):
         self.oab = oab
@@ -16,8 +16,7 @@ class Lawyer(banco.Model):
     def json(self):
         return {
             'oab': self.oab,
-            'task_id': self.task_id
+            'task_id': self.task_id,
             'nome': self.nome
         }
 
-    
