@@ -68,10 +68,11 @@ table td{
 }
 .coluna-nome-advogado
 {
-    width: 96px;
+    width: 210px;
+    
 }
 .coluna-num-oab{
-    width: 210px;
+    width: 96px;
 }
 .coluna-btn{
     width: 35px;

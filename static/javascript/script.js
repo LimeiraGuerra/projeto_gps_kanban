@@ -1,5 +1,5 @@
 
-function capturar() {
+function capture() {
 	let name = document.getElementById('name-advogado').value.trim();
 	let oab = document.getElementById('oab').value.trim();
 
@@ -16,15 +16,20 @@ function capturar() {
 		let cell2 = newRow.insertCell(1);
 		let cell3 = newRow.insertCell(2);
 
-		cell1.className = 'coluna-nome-advogado';
-		cell2.className = 'coluna-num-oab';
+		cell2.className = 'coluna-nome-advogado';
+		cell1.className = 'coluna-num-oab';
 		cell3.className = 'coluna-btn';
-
-		cell1.innerHTML = oab;
-		cell2.innerHTML = name;
-		cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
+		if(isLaywerEqual(oab)){
+			cell2.innerHTML = oab;
+			cell1.innerHTML = name;
+			cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
+			
+		}else{
+			alert("Advogado já adicionado!");
+		}
 		clearInput('oab');
-		clearInput('name-advogado')
+		clearInput('name-advogado');
+		
 	}
 
 }
@@ -58,7 +63,7 @@ function addTask(){
 	let nameTask = document.getElementById('name-task').value.trim();
 	let descricao = document.getElementById('desc').value.trim();
 
-	if(isEmpty(nameTask) || isEmpty(descricao)){
+	if(isEmpty(nameTask) || isEmpty(descricao) || !thereIsLaywer()){
 		alert("Por favor, digite todos os dados da tarefa!");
 	}
 	else{
@@ -66,7 +71,6 @@ function addTask(){
 		clearTable();
 		clearAllInputs();
 	}
-	
 }
 
 function clearAllInputs(){
@@ -74,4 +78,25 @@ function clearAllInputs(){
 	clearInput('name-task');
 	clearInput('name-advogado');
 	clearInput('desc');
+}
+
+function thereIsLaywer(){
+	let table = document.getElementById("Tabela");
+	let linhas = table.rows;
+	return (linhas.length > 0);
+}
+
+function isLaywerEqual(str){
+	let colunas = document.getElementsByClassName('coluna-num-oab');
+	
+	console.log(colunas);
+	console.log(colunas[0]);
+	console.log(colunas[0].innerText);
+	
+	for (let i = 0; i < colunas.length; i = i+1){
+		if(colunas[i].innerText === str){
+			return false;
+		}
+	}
+	return true;
 }
