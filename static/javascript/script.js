@@ -7,7 +7,6 @@ function capture() {
 		alert("Por favor, digite novamente os dados do advogado!");
 	}
 	else {
-		
 		let table = document.getElementById('Tabela');
 
 		let newRow = table.insertRow(0);
@@ -19,12 +18,14 @@ function capture() {
 		cell2.className = 'coluna-nome-advogado';
 		cell1.className = 'coluna-num-oab';
 		cell3.className = 'coluna-btn';
+		
 		if(isLaywerEqual(oab)){
-			cell2.innerHTML = oab;
-			cell1.innerHTML = name;
+			cell1.innerHTML = oab;
+			cell2.innerHTML = name;
 			cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
 			
 		}else{
+			deleteRow(this);
 			alert("Advogado já adicionado!");
 		}
 		clearInput('oab');
