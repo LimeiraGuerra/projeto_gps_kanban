@@ -25,7 +25,6 @@ function capture() {
 			cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
 			
 		}else{
-			deleteRow(this);
 			alert("Advogado já adicionado!");
 		}
 		clearInput('oab');
