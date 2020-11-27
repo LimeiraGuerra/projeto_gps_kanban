@@ -89,11 +89,6 @@ function thereIsLaywer(){
 
 function isLaywerEqual(str){
 	let colunas = document.getElementsByClassName('coluna-num-oab');
-	
-	console.log(colunas);
-	console.log(colunas[0]);
-	console.log(colunas[0].innerText);
-	
 	for (let i = 0; i < colunas.length; i = i+1){
 		if(colunas[i].innerText === str){
 			return false;
