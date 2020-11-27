@@ -15,15 +15,27 @@ def create_database():
 def homepage():
     return render_template("home.html")
 
-@app.route('/salvatask', methods=['POST'])
-def salvatask():
-    #task = Task(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status"))
-    #task.save()
-    #lawyer = Lawyer(0,0,"0")
-    #lawyer.save()
-    #lawyer1 = Lawyer(1,0,"1").save()
-    #print(task.lawyers)
-    return request.json
+@app.route('/savetask', methods=['POST'])
+def save_task():
+    Task(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).save()
+    return "seila"
+
+@app.route('/deletetask', methods=['POST'])
+def delete_task():
+    task = Task.find_task(Task, request.json.get("id"))
+    task.delete()
+    return "seila"
+
+@app.route('/gettask', methods=['POST'])
+def get_task():
+    return Task.find_task(Task, request.json.get("id")).json()
+
+@app.route('/updatetask', methods=['POST'])
+def update_task():
+    task = Task.find_task(Task, request.json.get("id"))
+    task.update(request.json.get("nome"), request.json.get("descricao"), request.json.get("status"))
+    return "seila"
+    
 
 if __name__ == '__main__':
     from sql_alchemy import bd
