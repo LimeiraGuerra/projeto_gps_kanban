@@ -12,11 +12,13 @@ class Task(bd.Model):
     status = bd.Column(bd.String(80))
     lawyers = bd.relationship('Lawyer', backref='task')
 
-    def __init__(self, task_id, nome, descricao, status):
-        self.task_id = task_id
+    def __init__(self, nome, descricao, status):
         self.nome = nome
         self.descricao = descricao
         self.status = status
+
+    def __str__(self):
+        return str(self.task_id)
 
     def json(self):
         return {
