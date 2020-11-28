@@ -1,6 +1,7 @@
 from flask import Flask, request , Blueprint
 import os
 from model.lawyer import Lawyer
+from model.task import Task
 
 lawyer_blueprint = Blueprint('lawyer', __name__, url_prefix="/lawyer")
 
@@ -8,11 +9,15 @@ lawyer_blueprint = Blueprint('lawyer', __name__, url_prefix="/lawyer")
 @lawyer_blueprint.route('/save', methods=['POST'])
 def save_lawyer():
     try:
-        Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome")).save()
+        if (Task.find_task(Task, request.json.get("task_id"))):
+            Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome")).save()
+            msg= 'sucess'
+        else: 
+            msg= "task_id não encontrada na tabela task"
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': 'sucess'
+                'msg': msg
             }
     except Exception as e:
         return {
@@ -28,8 +33,6 @@ def delete_lawyer(id):
         #Lawyer(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).delete()
         if (id): Lawyer.find_lawyer(Lawyer, id).delete()
         else: Lawyer.find_lawyer(Lawyer, request.json.get("id")).delete()
-        #lawyer = Lawyer.find_lawyer(Lawyer, request.json.get("id"))
-        #lawyer.delete()
         return {
                 'sucess': True,
                 'erro': False,

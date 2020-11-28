@@ -10,7 +10,7 @@ class Task(bd.Model):
     nome = bd.Column(bd.String(80))
     descricao = bd.Column(bd.String(80))
     status = bd.Column(bd.String(80))
-    lawyers = bd.relationship('Lawyer', backref='task')
+    lawyers = bd.relationship('Lawyer', backref='task', cascade="all, delete")
 
     def __init__(self, nome, descricao, status):
         self.nome = nome
