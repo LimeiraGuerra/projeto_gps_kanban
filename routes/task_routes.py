@@ -26,11 +26,10 @@ def save_task():
 def delete_task(id):
     try:
         #Task(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).delete()
-        #if (id): Task.find_task(Task, id).delete()
-        #else: Task.find_task(Task, request.json.get("id")).delete()
-        task = Task.find_task(Task, request.json.get("id"))
-        print(task.lawyers)
-        task.delete()
+        if (id): Task.find_task(Task, id).delete()
+        else: Task.find_task(Task, request.json.get("id")).delete()
+        #task = Task.find_task(Task, request.json.get("id"))
+        #task.delete()
         return {
                 'sucess': True,
                 'erro': False,

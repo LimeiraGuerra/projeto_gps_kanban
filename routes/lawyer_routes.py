@@ -8,8 +8,7 @@ lawyer_blueprint = Blueprint('lawyer', __name__, url_prefix="/lawyer")
 @lawyer_blueprint.route('/save', methods=['POST'])
 def save_lawyer():
     try:
-        print(request.json)
-        Lawyer(request.json.get("id"), request.json.get("oab"), request.json.get("task_id"), request.json.get("nome")).save()
+        Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome")).save()
         return {
                 'sucess': True,
                 'erro': False,
@@ -27,8 +26,10 @@ def save_lawyer():
 def delete_lawyer(id):
     try:
         #Lawyer(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).delete()
-        lawyer = Lawyer.find_lawyer(Lawyer, request.json.get("id"))
-        lawyer.delete()
+        if (id): Lawyer.find_lawyer(Lawyer, id).delete()
+        else: Lawyer.find_lawyer(Lawyer, request.json.get("id")).delete()
+        #lawyer = Lawyer.find_lawyer(Lawyer, request.json.get("id"))
+        #lawyer.delete()
         return {
                 'sucess': True,
                 'erro': False,
@@ -43,9 +44,10 @@ def delete_lawyer(id):
 
 @lawyer_blueprint.route('/get', defaults={ 'id': None}, methods=['POST'])
 @lawyer_blueprint.route('/get/<id>',  methods=['POST'])
-def get_lawyer():
+def get_lawyer(id):
     try:
-        lawyer = Lawyer.find_lawyer(Lawyer, request.json.get("id")).json()
+        if (id): lawyer = Lawyer.find_lawyer(Lawyer, id).json()
+        else : lawyer = Lawyer.find_lawyer(Lawyer, request.json.get("id")).json()
         return {
                 'sucess': True,
                 'erro': False,

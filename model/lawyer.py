@@ -10,8 +10,7 @@ class Lawyer(bd.Model):
     taskid = bd.Column(bd.Integer, bd.ForeignKey('task.task_id'), nullable=False)
     nome = bd.Column(bd.String(80))
 
-    def __init__(self, lawyer_id, oab, taskid, nome):
-        self.lawyer_id = lawyer_id
+    def __init__(self, oab, taskid, nome):
         self.oab = oab
         self.taskid = taskid
         self.nome = nome
