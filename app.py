@@ -18,8 +18,6 @@ def create_database():
 def homepage():
     return render_template("home.html")
 
-
-
 if __name__ == '__main__':
     from sql_alchemy import bd
     bd.init_app(app)

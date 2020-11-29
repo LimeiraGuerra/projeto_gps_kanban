@@ -26,12 +26,13 @@ def save_lawyer():
                 'erro': True,
                 'msg': str(e)
             }
+            
         
 @lawyer_blueprint.route('/delete', defaults={'id': None}, methods=['POST'])
 @lawyer_blueprint.route('/delete/<id>', methods=['POST'])
 def delete_lawyer(id):
     try:
-        #Lawyer(request.json.get("id"), request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).delete()
+
         if (id): Lawyer.find_lawyer(Lawyer, id).delete()
         else: Lawyer.find_lawyer(Lawyer, request.json.get("id")).delete()
         return {

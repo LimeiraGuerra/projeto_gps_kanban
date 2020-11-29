@@ -19,7 +19,7 @@ function capture() {
 		cell1.className = 'coluna-num-oab';
 		cell3.className = 'coluna-btn';
 		
-		if(isLaywerEqual(oab)){
+		if(isLawyerEqual(oab)){
 			cell1.innerHTML = oab;
 			cell2.innerHTML = name;
 			cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
@@ -63,11 +63,11 @@ function addTask(){
 	let nameTask = document.getElementById('name-task').value.trim();
 	let descricao = document.getElementById('desc').value.trim();
 
-	if(isEmpty(nameTask) || isEmpty(descricao) || !thereIsLaywer()){
+	if(isEmpty(nameTask) || isEmpty(descricao) || !thereIsLawyer()){
 		alert("Por favor, digite todos os dados da tarefa!");
 	}
 	else{
-		alert("vai ser add");
+		ajaxTask(nameTask, descricao);
 		clearTable();
 		clearAllInputs();
 	}
@@ -80,13 +80,13 @@ function clearAllInputs(){
 	clearInput('desc');
 }
 
-function thereIsLaywer(){
+function thereIsLawyer(){
 	let table = document.getElementById("Tabela");
 	let linhas = table.rows;
 	return (linhas.length > 0);
 }
 
-function isLaywerEqual(str){
+function isLawyerEqual(str){
 	let colunas = document.getElementsByClassName('coluna-num-oab');
 	for (let i = 0; i < colunas.length; i = i+1){
 		if(colunas[i].innerText === str){
@@ -96,12 +96,9 @@ function isLaywerEqual(str){
 	return true;
 }
 
-function addTaskBanco(){
-	let taskNome = document.getElementById("name-adv").value;
-	let taskDesc = document.getElementById("desc").value;
-	//$("#form-task").ajaxForm // https://stackoverflow.com/questions/18614240/jquery-form-not-working-as-expected-ajaxform-is-not-a-function
+function ajaxTask(taskNome,taskDesc){
 	$.ajax({
-		url:'http://localhost:8080/task/save',
+		url:'http://127.0.0.1:8080/task/save',
 		method: "POST",
 		data: JSON.stringify({
 			"nome" : taskNome,
@@ -118,5 +115,27 @@ function addTaskBanco(){
 }
 
 function addLawyer(id){
-
+	let oab = document.getElementsByClassName('coluna-num-oab');
+	let name = document.getElementsByClassName('coluna-nome-advogado');
+	for (let i = 0; i < oab.length; i = i+1){
+		ajaxLawyer(id, name[i].innerText, oab[i].innerText);
+	}
 }
+
+function ajaxLawyer(id, name, oab){
+	$.ajax({
+		url:'http://127.0.0.1:8080/lawyer/save',
+		method: "POST",
+		data: JSON.stringify({
+			"task_id": id,
+			"nome": name,
+			"oab": oab
+		}),
+		dataType: "json",
+		contentType: "application/json",
+        success:function(responsedata){
+			console.log(responsedata)
+        }
+	 })	 
+}
+
