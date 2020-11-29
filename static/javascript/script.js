@@ -67,9 +67,10 @@ function addTask(){
 		alert("Por favor, digite todos os dados da tarefa!");
 	}
 	else{
-		ajaxTask(nameTask, descricao);
-		//clearTable();
+		ajaxTask(nameTask,descricao);
+		
 		//clearAllInputs();
+		//clearTable();
 	}
 }
 
@@ -107,7 +108,7 @@ function ajaxTask(taskNome,taskDesc){
 		dataType: "json",
 		contentType: "application/json",
         success:function(responsedata){
-			addLawyer(responsedata["msg"]["id"]);
+			addLawyer(responsedata["msg"]["task_id"]);
         }
 	 })
 	 
