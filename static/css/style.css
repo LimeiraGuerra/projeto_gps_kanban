@@ -78,5 +78,6 @@ table td{
     width: 35px;
 }
 #btn-remove{
-    height: 30px;
+    height: 100%;
+    width: 100%;
 }
