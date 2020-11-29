@@ -8,11 +8,12 @@ task_blueprint = Blueprint('task', __name__, url_prefix="/task")
 @task_blueprint.route('/save', methods=['POST'])
 def save_task():
     try:
-        Task(request.json.get("nome"), request.json.get("descricao"), request.json.get("status")).save()
+        task = Task(request.json.get("nome"), request.json.get("descricao"), 'aberto' )#request.json.get("status"))
+        task.save()
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': 'sucess'
+                'msg': task.json()
             }
     except Exception as e:
         return {

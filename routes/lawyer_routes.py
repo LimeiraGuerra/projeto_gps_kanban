@@ -10,8 +10,9 @@ lawyer_blueprint = Blueprint('lawyer', __name__, url_prefix="/lawyer")
 def save_lawyer():
     try:
         if (Task.find_task(Task, request.json.get("task_id"))):
-            Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome")).save()
-            msg= 'sucess'
+            lawyer = Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome"))
+            lawyer.save()
+            msg= lawyer.json()
         else: 
             msg= "task_id não encontrada na tabela task"
         return {
