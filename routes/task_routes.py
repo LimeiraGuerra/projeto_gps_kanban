@@ -13,13 +13,13 @@ def save_task():
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': task.json()
+                'response': task.json()
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
         
 @task_blueprint.route('/delete', defaults={'id': None}, methods=['POST'])
@@ -32,14 +32,14 @@ def delete_task(id):
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': 'sucess'
+                'response': 'sucess'
             }
     except Exception as e:
         print(e)
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
 
 @task_blueprint.route('/get', defaults={ 'id': None}, methods=['POST'])
@@ -51,13 +51,13 @@ def get_task(id):
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': task
+                'response': task
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
 
 @task_blueprint.route('/update', methods=['POST'])
@@ -68,23 +68,20 @@ def update_task():
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': task.json()
+                'response': task.json()
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
 
 @task_blueprint.route('/getAll', methods=['POST'])
 def getAll():
     tasks = Task.query.all()
-    tasks_list = []
-    for task in tasks:
-        tasks_list.append(task.json())
     return {
                 'sucess': True,
                 'erro': False,
-                'msg': tasks_list
+                'response': [task.json() for task in tasks]
             }
