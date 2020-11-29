@@ -68,8 +68,8 @@ function addTask(){
 	}
 	else{
 		ajaxTask(nameTask, descricao);
-		clearTable();
-		clearAllInputs();
+		//clearTable();
+		//clearAllInputs();
 	}
 }
 
@@ -108,7 +108,6 @@ function ajaxTask(taskNome,taskDesc){
 		contentType: "application/json",
         success:function(responsedata){
 			addLawyer(responsedata["msg"]["id"]);
-			console.log(responsedata)
         }
 	 })
 	 
@@ -117,6 +116,7 @@ function ajaxTask(taskNome,taskDesc){
 function addLawyer(id){
 	let oab = document.getElementsByClassName('coluna-num-oab');
 	let name = document.getElementsByClassName('coluna-nome-advogado');
+	console.log(oab);
 	for (let i = 0; i < oab.length; i = i+1){
 		ajaxLawyer(id, name[i].innerText, oab[i].innerText);
 	}
