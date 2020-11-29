@@ -76,3 +76,15 @@ def update_task():
                 'erro': True,
                 'msg': str(e)
             }
+
+@task_blueprint.route('/getAll', methods=['POST'])
+def getAll():
+    tasks = Task.query.all()
+    tasks_list = []
+    for task in tasks:
+        tasks_list.append(task.json())
+    return {
+                'sucess': True,
+                'erro': False,
+                'msg': tasks_list
+            }
