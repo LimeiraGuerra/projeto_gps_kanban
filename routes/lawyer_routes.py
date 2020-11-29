@@ -12,19 +12,19 @@ def save_lawyer():
         if (Task.find_task(Task, request.json.get("task_id"))):
             lawyer = Lawyer( request.json.get("oab"), request.json.get("task_id"), request.json.get("nome"))
             lawyer.save()
-            msg= lawyer.json()
+            response= lawyer.json()
         else: 
-            msg= "task_id não encontrada na tabela task"
+            response= "task_id não encontrada na tabela task"
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': msg
+                'response': response
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
         
 @lawyer_blueprint.route('/delete', defaults={'id': None}, methods=['POST'])
@@ -37,13 +37,13 @@ def delete_lawyer(id):
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': 'sucess'
+                'response': 'sucess'
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
 
 @lawyer_blueprint.route('/get', defaults={ 'id': None}, methods=['POST'])
@@ -55,13 +55,13 @@ def get_lawyer(id):
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': lawyer
+                'response': lawyer
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
 
 @lawyer_blueprint.route('/update', methods=['POST'])
@@ -72,11 +72,11 @@ def update_lawyer():
         return {
                 'sucess': True,
                 'erro': False,
-                'msg': lawyer.json()
+                'response': lawyer.json()
             }
     except Exception as e:
         return {
                 'sucess': False,
                 'erro': True,
-                'msg': str(e)
+                'response': str(e)
             }
