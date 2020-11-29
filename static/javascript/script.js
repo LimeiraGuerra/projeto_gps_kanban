@@ -31,3 +31,28 @@ function deleteRow(t) {
 	console.log(row);
 
 }
+
+function addTask(){
+	let taskNome = document.getElementById("name-adv").value;
+	let taskDesc = document.getElementById("desc").value;
+	//$("#form-task").ajaxForm // https://stackoverflow.com/questions/18614240/jquery-form-not-working-as-expected-ajaxform-is-not-a-function
+	$.ajax({
+		url:'http://localhost:8080/task/save',
+		method: "POST",
+		data: JSON.stringify({
+			"nome" : taskNome,
+			"descricao": taskDesc
+		}),
+		dataType: "json",
+		contentType: "application/json",
+        success:function(responsedata){
+			addLawyer(responsedata["msg"]["id"]);
+			console.log(responsedata)
+        }
+	 })
+	 
+}
+
+function addLawyer(id){
+
+}
