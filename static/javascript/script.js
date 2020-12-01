@@ -99,7 +99,7 @@ function isLawyerEqual(str){
 
 function ajaxTask(taskNome,taskDesc){
 	$.ajax({
-		url:'http://127.0.0.1:8080/task/save',
+		url:'http://localhost:8080/task/save',
 		method: "POST",
 		data: JSON.stringify({
 			"nome" : taskNome,
@@ -108,8 +108,8 @@ function ajaxTask(taskNome,taskDesc){
 		dataType: "json",
 		contentType: "application/json",
         success:function(responsedata){
-			console.log(responsedata["msg"]["task_id"]);
-			addLawyer(responsedata["msg"]["task_id"]);
+			console.log(responsedata["response"]["task_id"]);
+			addLawyer(responsedata["response"]["task_id"]);
         }
 	 })
 	 
@@ -126,7 +126,7 @@ function addLawyer(id){
 
 function ajaxLawyer(id, name, oab){
 	$.ajax({
-		url:'http://127.0.0.1:8080/lawyer/save',
+		url:'http://localhost:8080/lawyer/save',
 		method: "POST",
 		data: JSON.stringify({
 			"task_id": id,
