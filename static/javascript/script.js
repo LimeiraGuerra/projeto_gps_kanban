@@ -22,7 +22,7 @@ function capture() {
 		if(isLawyerEqual(oab)){
 			cell1.innerHTML = oab;
 			cell2.innerHTML = name;
-			cell3.innerHTML = '<input type="button" class="btn btn-danger" id = "btn-remove" value="X" onclick="deleteRow(this)"/>';
+			cell3.innerHTML = '<button class="btn btn-danger btn-remove" onclick="deleteRow(this)"/><i class="material-icons icon-remove">close</i></button>';
 			
 		}else{
 			alert("Advogado já adicionado!");
