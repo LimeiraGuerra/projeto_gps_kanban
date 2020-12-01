@@ -25,7 +25,8 @@ class Task(bd.Model):
             'task_id': self.task_id,
             'nome': self.nome,
             'descricao': self.descricao,
-            'status': self.status
+            'status': self.status,
+            'lawyers': [lawyer.json() for lawyer in self.lawyers]
         }
 
     def find_task(cls, task_id):
