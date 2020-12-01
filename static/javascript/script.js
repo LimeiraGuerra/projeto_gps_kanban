@@ -108,6 +108,7 @@ function ajaxTask(taskNome,taskDesc){
 		dataType: "json",
 		contentType: "application/json",
         success:function(responsedata){
+			console.log(responsedata["msg"]["task_id"]);
 			addLawyer(responsedata["msg"]["task_id"]);
         }
 	 })
@@ -117,7 +118,7 @@ function ajaxTask(taskNome,taskDesc){
 function addLawyer(id){
 	let oab = document.getElementsByClassName('coluna-num-oab');
 	let name = document.getElementsByClassName('coluna-nome-advogado');
-	console.log(oab);
+	console.log(id);
 	for (let i = 0; i < oab.length; i = i+1){
 		ajaxLawyer(id, name[i].innerText, oab[i].innerText);
 	}
