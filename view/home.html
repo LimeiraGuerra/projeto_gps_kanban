@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,12 @@
     <link rel="shortcut icon" href="../static/img/ic.png" />
     <title>Quadro de Processos - GFJ</title>
 </head>
+
 <body>
     <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark">
-            <button class="btn btn-primary mr-auto" data-toggle="modal" data-target="#formModal">Adicionar nova tarefa</button>
+            <button class="btn btn-primary mr-auto" data-toggle="modal" data-target="#formModal">Adicionar nova
+                tarefa</button>
             <span class="navbar-brand">Quadro de Processos - GFJ</span>
         </div>
         <div class="container-fluid">
@@ -34,37 +37,179 @@
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 min-vh-100 border-right border-dark pt-6">
+                <div id="colunaAberto" data-type="aberto" data-idx="1" class="col-4 min-vh-100 border-right border-dark pt-6">
                     <!-- Criar card da tarefa dentro dessa div -->
+                    {% for task in tasks_a %}
                     <div class="card border-dark mb-3">
-                        <div class="card-header">1 - Nome Tarefa</div>
-                        <div class="card-body text-dark">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel odio suscipit, consectetur lectus vel, gravida sapien.</p>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Número da Oab</td>
-                                        <td>Nome do Advogado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Número da Oab</td>
-                                        <td>Nome do Advogado</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="btn btn-primary">Retroceder</a>
-                            <a href="#" class="btn btn-primary">Avançar</a>
+                        <div class="card-header p-2 d-inline-flex">
+                            <h5>{{ task.task_id }} - {{ task.name }}</h5>
+                            <div class="ml-auto">
+                                <button data-id="{{ task.task_id }}" type="button" class="btn bg-tranparent p-0">
+                                    <i  class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-2" data-toggle="collapse" data-target="#taskInfo{{ task.task_id }}" aria-expanded="false" aria-controls="taskInfo">
+                            <div role="button" class="text-center text-muted">
+                                <span class="material-icons">expand_more</span>
+                                Expandir descrição
+                                <span class="material-icons">expand_more</span>
+                            </div>
+                            <div class="collapse" id="taskInfo{{ task.task_id }}">
+                                <p class="card-text">{{ task.desc }}</p>
+                                <h6>Advogados:</h6>
+                                <table class="table table-bordered table-hover tabela-advogado">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">OAB</th>
+                                            <th scope="col">Nome</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for lawyer in task.lawyers %}
+                                        <tr>
+                                            <td>{{ lawyer.oab }}</td>
+                                            <td>{{ lawyer.name }}o</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex p-0">
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'back')" class="btn btn-secondary d-block w-100 separator-left status-btn-ret">
+                                <i class="material-icons">
+                                    arrow_back_ios
+                                </i>
+                                Retroceder
+                            </a>
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'forward')" class="btn btn-secondary d-block w-100 status-btn-av">
+                                Avançar
+                                <i class="material-icons">
+                                    arrow_forward_ios
+                                </i>
+                            </a>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                <div class="col-4 min-vh-100 border-right border-left border-dark pt-6"></div>
-                <div class="col-4 min-vh-100 border-left border-dark pt-6"></div>
+                <div id="colunaAndamento" data-type="andamento" data-idx="2" class="col-4 min-vh-100 border-right border-left border-dark pt-6">
+                    {% for task in tasks_m %}
+                    <div class="card border-dark mb-3">
+                        <div class="card-header p-2 d-inline-flex">
+                            <h5>{{ task.task_id }} - {{ task.name }}</h5>
+                            <div class="ml-auto">
+                                <button data-id="{{ task.task_id }}" type="button" class="btn bg-tranparent p-0">
+                                    <i  class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-2" data-toggle="collapse" data-target="#taskInfo{{ task.task_id }}" aria-expanded="false" aria-controls="taskInfo">
+                            <div role="button" class="text-center text-muted">
+                                <span class="material-icons">expand_more</span>
+                                Expandir descrição
+                                <span class="material-icons">expand_more</span>
+                            </div>
+                            <div class="collapse" id="taskInfo{{ task.task_id }}">
+                                <p class="card-text">{{ task.desc }}</p>
+                                <h6>Advogados:</h6>
+                                <table class="table table-bordered table-hover tabela-advogado">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">OAB</th>
+                                            <th scope="col">Nome</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for lawyer in task.lawyers %}
+                                        <tr>
+                                            <td>{{ lawyer.oab }}</td>
+                                            <td>{{ lawyer.name }}o</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex p-0">
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'back')" class="btn btn-secondary d-block w-100 separator-left status-btn-ret">
+                                <i class="material-icons">
+                                    arrow_back_ios
+                                </i>
+                                Retroceder
+                            </a>
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'forward')" class="btn btn-secondary d-block w-100 status-btn-av">
+                                Avançar
+                                <i class="material-icons">
+                                    arrow_forward_ios
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="colunaFinalizado" data-type="finalizado" data-idx="3" class="col-4 min-vh-100 border-left border-dark pt-6">
+                    {% for task in tasks_f %}
+                    <div class="card border-dark mb-3">
+                        <div class="card-header p-2 d-inline-flex">
+                            <h5>{{ task.task_id }} - {{ task.name }}</h5>
+                            <div class="ml-auto">
+                                <button data-id="{{ task.task_id }}" type="button" class="btn bg-tranparent p-0">
+                                    <i  class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-2" data-toggle="collapse" data-target="#taskInfo{{ task.task_id }}" aria-expanded="false" aria-controls="taskInfo">
+                            <div role="button" class="text-center text-muted">
+                                <span class="material-icons">expand_more</span>
+                                Expandir descrição
+                                <span class="material-icons">expand_more</span>
+                            </div>
+                            <div class="collapse" id="taskInfo{{ task.task_id }}">
+                                <p class="card-text">{{ task.desc }}</p>
+                                <h6>Advogados:</h6>
+                                <table class="table table-bordered table-hover tabela-advogado">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">OAB</th>
+                                            <th scope="col">Nome</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for lawyer in task.lawyers %}
+                                        <tr>
+                                            <td>{{ lawyer.oab }}</td>
+                                            <td>{{ lawyer.name }}o</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex p-0">
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'back')" class="btn btn-secondary d-block w-100 separator-left status-btn-ret">
+                                <i class="material-icons">
+                                    arrow_back_ios
+                                </i>
+                                Retroceder
+                            </a>
+                            <a role="button" onclick="changeStatus(this, {{ task.task_id }}, 'forward')" class="btn btn-secondary d-block w-100 status-btn-av">
+                                Avançar
+                                <i class="material-icons">
+                                    arrow_forward_ios
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </main>
     <!-- Modal -->
-    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Nova Tarefa</h5>
@@ -85,26 +230,30 @@
                         </div>
                         <hr>
                         <h6>Advogados</h6>
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="oab">OAB:</label>
-                                <input type="text" class="form-control input-oab" id="oab">
-                            </div>
-                            <div class="col-6">
-                                <label for="name-advogado">Nome:</label>
-                                <input type="text" class="form-control input-advogado" id="name-advogado">
-                            </div>
-                            <div class="col-2">
-                                <button  type="button" class="btn btn-info btn-add" onclick="capture()"><i class="material-icons icon-add">add</i></button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4 p-0 pr-1">
+                                    <label for="oab">OAB:</label>
+                                    <input type="text" class="form-control input-oab" id="oab">
+                                </div>
+                                <div class="col-7 p-0 pr-1">
+                                    <label for="name-advogado">Nome:</label>
+                                    <input type="text" class="form-control input-advogado" id="name-advogado">
+                                </div>
+                                <div class="col-1 p-0">
+                                    <button type="button" class="btn btn-primary btn-add" onclick="capture()"><i
+                                            class="material-icons">add</i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
                     <br>
-                    <table class="table table-dark tabela-advogado" id="Tabela">
+                    <table class="table table-bordered table-hover tabela-advogado" id="Tabela">
                     </table>
-                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="cancel()" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger"
+                        data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-primary" onclick="addTask()">Adicionar Tarefa</button>
                 </div>
             </div>
@@ -114,7 +263,12 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 <script src="../static/javascript/script.js"></script>
+
 </html>

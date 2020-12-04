@@ -7,14 +7,14 @@ class Task(bd.Model):
     __tablename__ = 'task'
 
     task_id = bd.Column(bd.Integer, primary_key=True)
-    nome = bd.Column(bd.String(80))
-    descricao = bd.Column(bd.String(80))
+    name = bd.Column(bd.String(80))
+    desc = bd.Column(bd.String(80))
     status = bd.Column(bd.String(80))
     lawyers = bd.relationship('Lawyer', backref='task', cascade="all, delete")
 
-    def __init__(self, nome, descricao, status):
-        self.nome = nome
-        self.descricao = descricao
+    def __init__(self, name, desc, status):
+        self.name = name
+        self.desc = desc
         self.status = status
 
     def __str__(self):
@@ -23,8 +23,8 @@ class Task(bd.Model):
     def json(self):
         return {
             'task_id': self.task_id,
-            'nome': self.nome,
-            'descricao': self.descricao,
+            'name': self.name,
+            'desc': self.desc,
             'status': self.status,
             'lawyers': [lawyer.json() for lawyer in self.lawyers]
         }
@@ -34,9 +34,9 @@ class Task(bd.Model):
         if task: return task
         return None
 
-    def update(self, nome, descricao, status):
-        self.nome = nome
-        self.descricao = descricao
+    def update(self, name, desc, status):
+        self.name = name
+        self.desc = desc
         self.status = status
         bd.session.commit()
 

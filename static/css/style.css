@@ -34,28 +34,14 @@ html::-webkit-scrollbar-thumb{
 	background: #5d6368;
 }
 
-.modal-lg{
-    width:400px;
-}
-.tabela-advogado{
-    padding: 375rem .115rem;
-    border: 1px solid black;
-    background-color: darkgray;
-
-
-}
-table td{
- border:1px solid black;
- text-align:center;
- color: black;
- width: 100;
-}
 .table td, .table th{    
+    text-align:center;
+    color: black;
+    width: 100;
     padding: 0rem;
     vertical-align: top;
     border-top: 0px;
     height: 100; 
-
 }
 .input-oab{
     width: 85;
@@ -64,34 +50,28 @@ table td{
     width:200;
 }
 .btn-add{
-    position: sticky;
-    top: 405px;
-    height: 34px;
-    width: 40;
-    
-}
-.btn-remove{
-    width: 7;
-    height: 5;    
-}
-.icon-add{
+    height: calc(1.5em + .75rem + 2px);
     position: absolute;
-    top: 50%;
-    left: 27%;
-    height: 55%;
-    transform: translate(-27%, -27%);
-    width: 10px;
-    height: 40px;
-    display: block;
+    bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
 }
-.icon-remove{
-    width: 5px;
-    height: 8px;
-    left: 57%;
-    transform: translate(-95%, -95%);
-    display: block;
 
+.btn-remove{
+    color: white !important;
+    cursor: pointer; 
 }
+
+.btn-remove:hover {
+	border-color: inherit !important;
+}
+
+.material-icons{
+    display: inline-flex;
+    vertical-align: top;
+}
+
 .coluna-nome-advogado
 {
     width: 210px;
@@ -102,4 +82,22 @@ table td{
 }
 .coluna-btn{
     width: 35px;
+}
+
+.card-header h5{
+    margin: 0;
+    align-self: center;
+}
+
+.separator-left{
+    border: solid rgba(0,0,0,.125);
+    border-width: 0 1px 0 0;
+}
+
+.status-btn-ret {
+    border-radius: 0 0 0 .20rem;
+}
+
+.status-btn-av {
+    border-radius: 0 0 .20rem 0;
 }

@@ -1,26 +1,25 @@
 from sql_alchemy import bd
-from sqlalchemy import UniqueConstraint
+#from sqlalchemy import UniqueConstraint
 
 class Lawyer(bd.Model):
 
     __tablename__ = 'lawyer'
 
     lawyer_id = bd.Column(bd.Integer, primary_key=True)
-    oab = bd.Column(bd.String(80), unique =True)
+    oab = bd.Column(bd.String(80))
     taskid = bd.Column(bd.Integer, bd.ForeignKey('task.task_id'), nullable=False)
-    nome = bd.Column(bd.String(80))
+    name = bd.Column(bd.String(80))
 
-    def __init__(self, oab, taskid, nome):
+    def __init__(self, oab, name):
         self.oab = oab
-        self.taskid = taskid
-        self.nome = nome
+        self.name = name
 
     def json(self):
         return {
             'lawyer_id': self.lawyer_id,
             'oab': self.oab,
             'taskid': self.taskid,
-            'nome': self.nome
+            'name': self.name
         }
 
     def find_lawyer(cls, lawyer_id):
@@ -28,11 +27,11 @@ class Lawyer(bd.Model):
         if lawyer: return lawyer
         return None     
 
-    def update(self, nome, oab, taskid):
-        self.nome = nome
-        self.oab = oab
-        self.taskid = taskid
-        bd.session.commit()
+    #def update(self, name, oab, taskid):
+    #    self.name = name
+    #    self.oab = oab
+    #    self.taskid = taskid
+    #    bd.session.commit()
 
     def save(self):
         bd.session.add(self)
