@@ -38,44 +38,68 @@ html::-webkit-scrollbar-thumb{
     width:400px;
 }
 .tabela-advogado{
-    padding: 375rem .75rem;
+    padding: 375rem .115rem;
     border: 1px solid black;
     background-color: darkgray;
-    
+
 
 }
 table td{
  border:1px solid black;
  text-align:center;
  color: black;
+ width: 100;
 }
 .table td, .table th{    
     padding: 0rem;
     vertical-align: top;
     border-top: 0px;
+    height: 100; 
+
 }
 .input-oab{
     width: 85;
 }
 .input-advogado{
-    width:120;
+    width:200;
 }
 .btn-add{
     position: sticky;
     top: 405px;
     height: 34px;
-    width: 40px;
+    width: 40;
+    
+}
+.btn-remove{
+    width: 7;
+    height: 5;    
+}
+.icon-add{
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    height: 55%;
+    transform: translate(-27%, -27%);
+    width: 10px;
+    height: 40px;
+    display: block;
+}
+.icon-remove{
+    width: 5px;
+    height: 8px;
+    left: 57%;
+    transform: translate(-95%, -95%);
+    display: block;
+
 }
 .coluna-nome-advogado
 {
-    width: 96px;
+    width: 210px;
+    
 }
 .coluna-num-oab{
-    width: 210px;
+    width: 96px;
 }
 .coluna-btn{
     width: 35px;
-}
-#btn-remove{
-    height: 30px;
 }

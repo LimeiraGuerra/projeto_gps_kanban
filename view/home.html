@@ -74,10 +74,10 @@
                 </div>
                 <div class="modal-body">
                     <!-- Adicionar o form de nova tarefa nessa div -->
-                    <form>
+                    <form id="form-task">
                         <div class="form-group">
-                            <label for="name-adv">Nome:</label>
-                            <input type="name" class="form-control" id="name-adv">
+                            <label for="name-task">Nome:</label>
+                            <input type="name" class="form-control" id="name-task">
                         </div>
                         <div class="form-group">
                             <label for="desc">Descrição:</label>
@@ -95,7 +95,7 @@
                                 <input type="text" class="form-control input-advogado" id="name-advogado">
                             </div>
                             <div class="col-2">
-                                <input type="button" class="btn btn-info btn-add" onclick="capturar()" value="+"></button>
+                                <button  type="button" class="btn btn-info btn-add" onclick="capture()"><i class="material-icons icon-add">add</i></button>
                             </div>
                         </div>
                     </form>
@@ -104,8 +104,8 @@
                     </table>
                     </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Adicionar Tarefa</button>
+                    <button type="button" class="btn btn-danger" onclick="cancel()" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="addTask()">Adicionar Tarefa</button>
                 </div>
             </div>
         </div>
