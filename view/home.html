@@ -14,6 +14,11 @@
 </head>
 
 <body>
+    <div class="load-page d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-light" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
     <header class="fixed-top">
         <div class="navbar navbar-dark bg-dark">
             <button class="btn btn-primary mr-auto" data-toggle="modal" data-target="#formModal">Adicionar nova
@@ -270,5 +275,9 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 <script src="../static/javascript/script.js"></script>
-
+<script>
+    window.onload = function(){
+        $('.load-page').toggleClass('invisible');
+    };
+</script>
 </html>

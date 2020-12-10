@@ -65,11 +65,12 @@ function isEmpty(str) {
 function addTask() {
 	let nameTask = document.getElementById('name-task').value.trim();
 	let descricao = document.getElementById('desc').value.trim();
-
+	
 	if (isEmpty(nameTask) || isEmpty(descricao) || !thereIsLawyer()) {
 		alert("Por favor, digite todos os dados da tarefa!");
 	}
 	else {
+		$('.load-page').toggleClass('invisible');
 		newTask(getFormTaskJson(nameTask, descricao));
 	}
 }
@@ -111,8 +112,9 @@ function newTask(taskJson) {
 		}
 		else{
 			alert("Algum erro aconteceu!");
-		}	
+		}
 		resetJqueryFuncs();
+		$('.load-page').toggleClass('invisible');	
 	});
 }
 
@@ -224,6 +226,7 @@ function expandLabel(t) {
 
 function deleteTask(t) {
 	if(confirm("Deseja realmente excluir?")){
+		$('.load-page').toggleClass('invisible');	
 		$.post("/task/delete/"+t.parent().data("id"))
 		.done((data) => {
 			if (data.success){
@@ -235,6 +238,7 @@ function deleteTask(t) {
 		});
 	}
 	resetJqueryFuncs();
+	$('.load-page').toggleClass('invisible');	
 }
 
 function changeStatus(t, id, movement) {
